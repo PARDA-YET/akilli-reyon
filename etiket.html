@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>QR Etiket Paneli</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    .etiket-kutu {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .etiket {
+      border: 1px solid #aaa;
+      padding: 10px;
+      text-align: center;
+      page-break-inside: avoid;
+    }
+    .etiket h3 {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    .etiket canvas {
+      margin: auto;
+      display: block;
+    }
+    @media print {
+      button { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Etiketler</h1>
+  <button onclick="window.print()">Yazdır</button>
+  <div class="etiket-kutu" id="etiketler"></div>
+
+  <script>
+    const urunler = {
+      "nb-sistem": { ad: "NB Sistem" },
+      "nb-super-elastik": { ad: "NB Super Elastik" },
+      "polyflex-2k": { ad: "Polyflex 2K" },
+      "kbe-flussigfolie": { ad: "KBE Flüssigfolie" },
+      "ms-flexfolie": { ad: "MS-Flexfolie" },
+      "kb-pur-214": { ad: "KB-Pur 214" },
+      "bk-1000": { ad: "BK 1000" },
+      "bd-50": { ad: "BD 50" },
+      "kb-pox-008": { ad: "KB-Pox 008" }
+    };
+
+    const baseUrl = "https://kullaniciadi.github.io/akilli-reyon/urun.html?id=";
+    const konteyner = document.getElementById("etiketler");
+
+    for (const [id, veri] of Object.entries(urunler)) {
+      const div = document.createElement("div");
+      div.className = "etiket";
+
+      const baslik = document.createElement("h3");
+      baslik.textContent = veri.ad;
+      div.appendChild(baslik);
+
+      const canvas = document.createElement("canvas");
+      div.appendChild(canvas);
+
+      const qr = new QRious({
+        element: canvas,
+        value: baseUrl + id,
+        size: 160
+      });
+
+      konteyner.appendChild(div);
+    }
+  </script>
+</body>
+</html>
