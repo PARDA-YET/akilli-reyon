@@ -12,5 +12,117 @@
     ],
     "uygulama": "Bodrum duvarları, perde betonlar, temel altı plakalar, su depoları, istinat duvarları",
     "gorsel": "https://via.placeholder.com/600x400"
+  },
+  "nb-super-elastik": {
+    "ad": "NB Super Elastik Beyaz",
+    "aciklama": "Yüksek elastikiyete sahip, iki bileşenli su yalıtım harcı.",
+    "pdf": "https://koster.com.tr/pdf/nb-super-elastik.pdf",
+    "video": "https://www.youtube.com/embed/example2",
+    "teknik": [
+      "Renk: Beyaz",
+      "Karışım oranı: A:B = 1:2",
+      "Su geçirimsizlik: DIN EN 14891",
+      "Uygulama: Fırça veya mala ile"
+    ],
+    "uygulama": "Teraslar, balkonlar, dış cepheler, duş ve ıslak hacimler",
+    "gorsel": "https://via.placeholder.com/600x400"
+  },
+  "polyflex-2k": {
+    "ad": "Polyflex 2K",
+    "aciklama": "Esnek, iki bileşenli, çatlak köprüleme özelliğine sahip yalıtım kaplaması.",
+    "pdf": "https://koster.com.tr/pdf/polyflex-2k.pdf",
+    "video": "https://www.youtube.com/embed/example3",
+    "teknik": [
+      "Tüketim: ~3 kg/m²",
+      "Esneklik: %90",
+      "UV dayanımı yüksek",
+      "Uygulama: Fırça veya rulo ile"
+    ],
+    "uygulama": "Teras, temel duvarı, zemin altı, dış cephe su izolasyonu",
+    "gorsel": "https://via.placeholder.com/600x400"
+  },
+  "kbe-flussigfolie": {
+    "ad": "KBE Flüssigfolie",
+    "aciklama": "Polimer esaslı, kullanıma hazır, tek bileşenli sıvı su yalıtımı.",
+    "pdf": "https://koster.com.tr/pdf/kbe-flussigfolie.pdf",
+    "video": "https://www.youtube.com/embed/example4",
+    "teknik": [
+      "Renk: Gri",
+      "Hazır kullanıma uygun",
+      "Kuruma süresi: 4-6 saat",
+      "Fırça veya rulo uygulaması"
+    ],
+    "uygulama": "Banyo, WC, mutfak, balkon ve teras altı su yalıtımı",
+    "gorsel": "https://via.placeholder.com/600x400"
+  },
+  "ms-flexfolie": {
+    "ad": "MS-Flexfolie",
+    "aciklama": "MS polimer bazlı, elastik ve su geçirimsiz kaplama malzemesi.",
+    "pdf": "https://koster.com.tr/pdf/ms-flexfolie.pdf",
+    "video": "https://www.youtube.com/embed/example5",
+    "teknik": [
+      "İki bileşenli, solventsiz",
+      "Hızlı kuruma, çatlak köprüleme",
+      "Uygulama: Spatula ile",
+      "Su ve kimyasal dayanımı yüksek"
+    ],
+    "uygulama": "Temel duvarları, perde betonlar, iç ve dış zeminler",
+    "gorsel": "https://via.placeholder.com/600x400"
+  },
+  "kb-pur-214": {
+    "ad": "KB-Pur 214",
+    "aciklama": "Poliüretan esaslı, çatlak enjeksiyon sistemleri için özel ürün.",
+    "pdf": "https://koster.com.tr/pdf/kb-pur-214.pdf",
+    "video": "https://www.youtube.com/embed/example6",
+    "teknik": [
+      "Düşük viskoziteli sıvı",
+      "Hızlı reaksiyon süresi",
+      "Suyla temas ettiğinde genleşme",
+      "Basınçlı enjeksiyonla uygulanır"
+    ],
+    "uygulama": "İnşaat derzleri, çatlak enjeksiyonları, perde beton su sızıntıları",
+    "gorsel": "https://via.placeholder.com/600x400"
+  },
+  "bk-1000": {
+    "ad": "BK 1000",
+    "aciklama": "Su geçirimsiz, çimento esaslı tamir harcı.",
+    "pdf": "https://koster.com.tr/pdf/bk-1000.pdf",
+    "video": "https://www.youtube.com/embed/example7",
+    "teknik": [
+      "Suya ve dona dayanıklı",
+      "Yüksek aderanslı",
+      "İnce ve kalın yüzeyler için uygun",
+      "Elle veya püskürtme ile uygulanabilir"
+    ],
+    "uygulama": "Yüzey onarımları, kanal duvarları, sıva tamiratları",
+    "gorsel": "https://via.placeholder.com/600x400"
+  },
+  "bd-50": {
+    "ad": "BD 50",
+    "aciklama": "Yüksek geçirimsizliğe sahip, bitüm bazlı su yalıtım kaplaması.",
+    "pdf": "https://koster.com.tr/pdf/bd-50.pdf",
+    "video": "https://www.youtube.com/embed/example8",
+    "teknik": [
+      "Solventsiz, su bazlı",
+      "Elastik ve çatlak köprüleyici",
+      "Toprak altı zeminlerde kullanıma uygun",
+      "Tek veya çift kat uygulanabilir"
+    ],
+    "uygulama": "Temel dış yüzeyleri, bodrum duvarları, yer altı yapı izolasyonu",
+    "gorsel": "https://via.placeholder.com/600x400"
+  },
+  "kb-pox-008": {
+    "ad": "KB-Pox 008",
+    "aciklama": "Epoksi bazlı, kimyasal dayanımı yüksek yüzey kaplama malzemesi.",
+    "pdf": "https://koster.com.tr/pdf/kb-pox-008.pdf",
+    "video": "https://www.youtube.com/embed/example9",
+    "teknik": [
+      "İki bileşenli, düşük viskoziteli",
+      "Asit ve alkalilere karşı dirençli",
+      "Hafif yük trafiğine uygun",
+      "Uygulama: Rulo veya fırça"
+    ],
+    "uygulama": "Laboratuvar zeminleri, kimyasal tesisler, endüstriyel alanlar",
+    "gorsel": "https://via.placeholder.com/600x400"
   }
 }
