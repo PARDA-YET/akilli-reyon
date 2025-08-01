@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ürün Ekleme Paneli</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+    #qr-container {
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Yeni Ürün Ekle</h1>
+  <form id="urunForm">
+    <label>Ürün Adı:</label>
+    <input type="text" id="ad" required />
+
+    <label>Açıklama:</label>
+    <textarea id="aciklama" required></textarea>
+
+    <label>PDF Linki:</label>
+    <input type="url" id="pdf" />
+
+    <label>Video Linki:</label>
+    <input type="url" id="video" />
+
+    <label>Teknik Özellikler (virgülle ayır):</label>
+    <input type="text" id="teknik" />
+
+    <label>Uygulama Alanı:</label>
+    <textarea id="uygulama"></textarea>
+
+    <label>Görsel Linki:</label>
+    <input type="url" id="gorsel" />
+
+    <button type="submit">Ürünü Ekle ve QR Oluştur</button>
+  </form>
+
+  <div id="qr-container">
+    <h2>QR Kodu:</h2>
+    <canvas id="qr"></canvas>
+    <a id="indirLink" href="#" download="qr-kodu.png">QR Kodunu İndir</a>
+  </div>
+
+  <script>
+    const form = document.getElementById("urunForm");
+    const qr = new QRious({ element: document.getElementById("qr"), size: 200 });
+    const indirLink = document.getElementById("indirLink");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const ad = document.getElementById("ad").value.trim();
+      const id = ad.toLowerCase().replace(/\s+/g, '-');
+      const baseUrl = "https://kullaniciadi.github.io/akilli-reyon/urun.html?id=";
+      const qrUrl = baseUrl + id;
+
+      qr.value = qrUrl;
+
+      indirLink.href = qr.toDataURL("image/png");
+
+      // JSON nesnesi
+      const urun = {
+        [id]: {
+          ad,
+          aciklama: document.getElementById("aciklama").value,
+          pdf: document.getElementById("pdf").value,
+          video: document.getElementById("video").value,
+          teknik: document.getElementById("teknik").value.split(",").map(x => x.trim()),
+          uygulama: document.getElementById("uygulama").value,
+          gorsel: document.getElementById("gorsel").value || "https://via.placeholder.com/600x400"
+        }
+      };
+
+      console.log("Yeni ürün verisi:", urun);
+      alert("Ürün JSON olarak oluşturuldu ve QR üretildi. Konsoldan kopyalayabilirsin.");
+    });
+  </script>
+</body>
+</html>
