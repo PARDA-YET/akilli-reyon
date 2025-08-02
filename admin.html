@@ -73,6 +73,8 @@
         veri[key] = value;
       });
 
+      veri.aktif = "hayır"; // Yeni girişler onaysız olarak eklenecek
+
       try {
         const res = await fetch("https://script.google.com/macros/s/AKfycbx904RzbzUQDPXGySDZnCjjO9xKe5glIXMrkDTxgIrOGugTqU8OzG5SCCGhOFKENDfRdA/exec", {
           method: "POST",
@@ -85,7 +87,7 @@
         const sonucJSON = await res.json();
 
         if (sonucJSON.durum === "basarili") {
-          sonuc.textContent = "✅ Ürün başarıyla eklendi.";
+          sonuc.textContent = "✅ Ürün onay beklemek üzere kaydedildi.";
           form.reset();
         } else {
           sonuc.textContent = "⚠️ Kayıt başarısız. Tekrar deneyin.";
