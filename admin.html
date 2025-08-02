@@ -1,101 +1,99 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ürün Ekleme Paneli</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+  <meta charset="UTF-8">
+  <title>Ürün Ekle</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      max-width: 800px;
+      font-family: sans-serif;
+      max-width: 600px;
       margin: auto;
+      padding: 20px;
     }
     label {
       display: block;
-      margin-top: 10px;
+      margin-top: 12px;
     }
     input, textarea {
       width: 100%;
       padding: 8px;
-      margin-top: 5px;
+      margin-top: 4px;
     }
     button {
-      margin-top: 20px;
+      margin-top: 16px;
       padding: 10px 20px;
-      font-size: 16px;
     }
-    #qr-container {
-      margin-top: 30px;
+    .sonuc {
+      margin-top: 20px;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
   <h1>Yeni Ürün Ekle</h1>
   <form id="urunForm">
-    <label>Ürün Adı:</label>
-    <input type="text" id="ad" required />
-
-    <label>Açıklama:</label>
-    <textarea id="aciklama" required></textarea>
-
-    <label>PDF Linki:</label>
-    <input type="url" id="pdf" />
-
-    <label>Video Linki:</label>
-    <input type="url" id="video" />
-
-    <label>Teknik Özellikler (virgülle ayır):</label>
-    <input type="text" id="teknik" />
-
-    <label>Uygulama Alanı:</label>
-    <textarea id="uygulama"></textarea>
-
-    <label>Görsel Linki:</label>
-    <input type="url" id="gorsel" />
-
-    <button type="submit">Ürünü Ekle ve QR Oluştur</button>
+    <label>Ürün ID
+      <input type="text" name="id" required />
+    </label>
+    <label>Ad
+      <input type="text" name="ad" required />
+    </label>
+    <label>Açıklama
+      <textarea name="aciklama"></textarea>
+    </label>
+    <label>PDF Linki
+      <input type="url" name="pdf" />
+    </label>
+    <label>Video Linki
+      <input type="url" name="video" />
+    </label>
+    <label>Teknik Özellikler (virgülle ayır)
+      <input type="text" name="teknik" />
+    </label>
+    <label>Uygulama Alanları
+      <input type="text" name="uygulama" />
+    </label>
+    <label>Görsel Linki
+      <input type="url" name="gorsel" />
+    </label>
+    <button type="submit">Kaydet</button>
   </form>
-
-  <div id="qr-container">
-    <h2>QR Kodu:</h2>
-    <canvas id="qr"></canvas>
-    <a id="indirLink" href="#" download="qr-kodu.png">QR Kodunu İndir</a>
-  </div>
+  <div class="sonuc" id="sonuc"></div>
 
   <script>
     const form = document.getElementById("urunForm");
-    const qr = new QRious({ element: document.getElementById("qr"), size: 200 });
-    const indirLink = document.getElementById("indirLink");
+    const sonuc = document.getElementById("sonuc");
 
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async function(e) {
       e.preventDefault();
+      const formData = new FormData(form);
+      const veri = {};
 
-      const ad = document.getElementById("ad").value.trim();
-      const id = ad.toLowerCase().replace(/\s+/g, '-');
-      const baseUrl = "https://kullaniciadi.github.io/akilli-reyon/urun.html?id=";
-      const qrUrl = baseUrl + id;
+      formData.forEach((value, key) => {
+        veri[key] = value;
+      });
 
-      qr.value = qrUrl;
+      try {
+        const res = await fetch("https://script.google.com/macros/s/AKfycbx904RzbzUQDPXGySDZnCjjO9xKe5glIXMrkDTxgIrOGugTqU8OzG5SCCGhOFKENDfRdA/exec", {
+          method: "POST",
+          body: JSON.stringify(veri),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        });
 
-      indirLink.href = qr.toDataURL("image/png");
+        const sonucJSON = await res.json();
 
-      // JSON nesnesi
-      const urun = {
-        [id]: {
-          ad,
-          aciklama: document.getElementById("aciklama").value,
-          pdf: document.getElementById("pdf").value,
-          video: document.getElementById("video").value,
-          teknik: document.getElementById("teknik").value.split(",").map(x => x.trim()),
-          uygulama: document.getElementById("uygulama").value,
-          gorsel: document.getElementById("gorsel").value || "https://via.placeholder.com/600x400"
+        if (sonucJSON.durum === "basarili") {
+          sonuc.textContent = "✅ Ürün başarıyla eklendi.";
+          form.reset();
+        } else {
+          sonuc.textContent = "⚠️ Kayıt başarısız. Tekrar deneyin.";
         }
-      };
-
-      console.log("Yeni ürün verisi:", urun);
-      alert("Ürün JSON olarak oluşturuldu ve QR üretildi. Konsoldan kopyalayabilirsin.");
+      } catch (error) {
+        console.error(error);
+        sonuc.textContent = "❌ Hata oluştu: " + error.message;
+      }
     });
   </script>
 </body>
