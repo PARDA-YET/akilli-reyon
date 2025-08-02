@@ -39,40 +39,33 @@
   <div class="etiket-kutu" id="etiketler"></div>
 
   <script>
-    const urunler = {
-      "nb-sistem": { ad: "NB Sistem" },
-      "nb-super-elastik": { ad: "NB Super Elastik" },
-      "polyflex-2k": { ad: "Polyflex 2K" },
-      "kbe-flussigfolie": { ad: "KBE Flüssigfolie" },
-      "ms-flexfolie": { ad: "MS-Flexfolie" },
-      "kb-pur-214": { ad: "KB-Pur 214" },
-      "bk-1000": { ad: "BK 1000" },
-      "bd-50": { ad: "BD 50" },
-      "kb-pox-008": { ad: "KB-Pox 008" }
-    };
+    const apiURL = "https://script.google.com/macros/s/AKfycbwQqeCiEB9PFtsujFYwv8C7Kt-xBHSVfC8aPuDnQC97/exec";
 
-    const baseUrl = "https://kullaniciadi.github.io/akilli-reyon/urun.html?id=";
-    const konteyner = document.getElementById("etiketler");
+    fetch(apiURL)
+      .then(res => res.json())
+      .then(urunler => {
+        const konteyner = document.getElementById("etiketler");
 
-    for (const [id, veri] of Object.entries(urunler)) {
-      const div = document.createElement("div");
-      div.className = "etiket";
+        for (const [id, veri] of Object.entries(urunler)) {
+          const div = document.createElement("div");
+          div.className = "etiket";
 
-      const baslik = document.createElement("h3");
-      baslik.textContent = veri.ad;
-      div.appendChild(baslik);
+          const baslik = document.createElement("h3");
+          baslik.textContent = veri.ad;
+          div.appendChild(baslik);
 
-      const canvas = document.createElement("canvas");
-      div.appendChild(canvas);
+          const canvas = document.createElement("canvas");
+          div.appendChild(canvas);
 
-      const qr = new QRious({
-        element: canvas,
-        value: baseUrl + id,
-        size: 160
+          const qr = new QRious({
+            element: canvas,
+            value: `https://parda-yet.github.io/akilli-reyon/urun.html?id=${id}`,
+            size: 160
+          });
+
+          konteyner.appendChild(div);
+        }
       });
-
-      konteyner.appendChild(div);
-    }
   </script>
 </body>
 </html>
