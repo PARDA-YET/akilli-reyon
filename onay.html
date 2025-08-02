@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Ürün Onay Paneli</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    .kart {
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+    }
+    .btn {
+      margin-right: 10px;
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+    .btn.onayla {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+    }
+    .btn.sil {
+      background-color: #f44336;
+      color: white;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Onay Bekleyen Ürünler</h1>
+  <div id="liste">Yükleniyor...</div>
+
+  <script>
+    const apiBase = "https://script.google.com/macros/s/AKfycbx904RzbzUQDPXGySDZnCjjO9xKe5glIXMrkDTxgIrOGugTqU8OzG5SCCGhOFKENDfRdA/exec";
+
+    async function listele() {
+      const hedef = document.getElementById("liste");
+      hedef.innerHTML = "Yükleniyor...";
+
+      const res = await fetch(apiBase + "?action=getUnapproved");
+      const data = await res.json();
+
+      if (Object.keys(data).length === 0) {
+        hedef.textContent = "✅ Onay bekleyen ürün bulunmuyor.";
+        return;
+      }
+
+      hedef.innerHTML = "";
+      for (const id in data) {
+        const urun = data[id];
+        const kart = document.createElement("div");
+        kart.className = "kart";
+        kart.innerHTML = `
+          <h3>${urun.ad} (${urun.id})</h3>
+          <p>${urun.aciklama || "Açıklama yok."}</p>
+          <button class="btn onayla" onclick="onayla('${urun.id}')">Onayla</button>
+          <button class="btn sil" onclick="sil('${urun.id}')">Sil</button>
+        `;
+        hedef.appendChild(kart);
+      }
+    }
+
+    async function onayla(id) {
+      await fetch(apiBase + "?action=approveProduct&id=" + id);
+      listele();
+    }
+
+    async function sil(id) {
+      await fetch(apiBase + "?action=deleteProduct&id=" + id);
+      listele();
+    }
+
+    listele();
+  </script>
+</body>
+</html>
