@@ -1,0 +1,67 @@
+body {
+  font-family: "Segoe UI", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 24px;
+  color: #2c3e50;
+}
+
+.urun-gorsel {
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.bolum {
+  margin-top: 20px;
+  padding: 15px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.bolum h2 {
+  font-size: 18px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  color: #2c3e50;
+}
+
+.etiket {
+  background: #e1ecf4;
+  color: #0366d6;
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin: 2px;
+  font-size: 13px;
+}
+
+.butonlar a {
+  display: inline-block;
+  padding: 10px 15px;
+  margin: 5px 10px 5px 0;
+  background: #3498db;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.butonlar a:hover {
+  background: #2980b9;
+}
